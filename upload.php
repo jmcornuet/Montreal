@@ -54,7 +54,8 @@ ob_implicit_flush(true);
           <fieldset class="champemprunteurs">
 
      <?php     
-     $dossier = 'upload/';
+     if (PHP_OS == "Darwin") $dossier = 'upload/';
+     else $dossier = '/var/www/html/Montreal/upload/';
      $fichier = basename($_FILES['filetable']['name']);
      $taille_maxi = 500000;
      $taille = filesize($_FILES['filetable']['tmp_name']);
