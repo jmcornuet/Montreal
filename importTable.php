@@ -1,10 +1,6 @@
 <?php
     session_start();
-    $tadh = $_SESSION['tadh'];
-    $tact = $_SESSION['tact'];
-    $tani = $_SESSION['tani'];
-    $prenom=$_SESSION['prenom'];
-    $niveau=$_SESSION['niveau'];
+    require_once("session.php");
     if (!$prenom) die();
 ?>
 <!DOCTYPE html>

@@ -4,6 +4,11 @@
 	$niveau=$_SESSION['niveau'];
 	if (!$prenom) die();
 	include("MGENconfig.php");
+    require_once("session.php");
+    function crypte($s,$n) {
+	    exec('./cryptb "'.$s.'" '.$n,$resultat,$ret);
+	    return $resultat[0];
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +26,7 @@
 		$prenom = $_POST['prenom'];
 		$niveau = $_POST['niveau'];
 		$login = $_POST['login'];
-		$password = $_POST['password'];
+		$password = crypte($_POST['password'],40);
 
 		$M = new MConf;
 		$sql = "INSERT INTO $M->tablaut (login,password,niveau,nom,prenom) VALUES ('".$login."','".$password."',".$niveau.",'".$nom."','".$prenom."')" ;

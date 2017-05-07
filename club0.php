@@ -1,14 +1,6 @@
 <?php
-/*
-  $lifetime=10;
-  session_start();
-  setcookie(session_name(),session_id(),time()+$lifetime);
-*/
-
 	session_start();
-	$prenom=$_SESSION['prenom'];
-	$niveau=$_SESSION['niveau'];
-	$nom=$_SESSION['nom'];
+    require_once("session.php");
 	if (!$prenom) die();
 	include("MGENconfig.php");
 ?>

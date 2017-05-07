@@ -1,12 +1,8 @@
 <?php
 	session_start();
-	$tadh=$_SESSION['tadh'];
-	$tani=$_SESSION['tani'];
-	$tact=$_SESSION['tact'];
-	$prenom=$_SESSION['prenom'];
-	$niveau=$_SESSION['niveau'];
+    require_once("session.php");
 	if (!$prenom) die();
-	include("MGENconfig.php");	
+	include("MGENconfig.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -74,6 +70,7 @@
 				<?php 
 					if ($niveau<2) echo '<input type="submit" value="VALIDER">';
 					else echo "</br><div class='alerte'>Désolé, vous n'avez pas les droits suffisants pour cette opération</div>";
+				?>
 				
 			</form>
 		</fieldset>

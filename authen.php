@@ -1,8 +1,5 @@
 
 <?php 
-/*  $lifetime=300;
-  session_start();
-  setcookie(session_name(),session_id(),time()+$lifetime);*/
 	session_start();
 	include("MGENconfig.php");
 ?>
@@ -30,24 +27,28 @@ if ($login!="" AND $pass!="") {
 	//$passcode = $donnees['password'];
 	//exec('./decrypta "'.$passcode.'"',$passdecode);
 	//if ($pass==$passdecode[0]) {
-	if ($pass==$donnees['password']) {
-		$ff = fopen("../conf/tables.conf","r");
-		while (!feof($ff)) {
-			$a= trim(utf8_encode(fgets($ff)));
-			$b=explode("=",$a);
-			switch ($b[0]) {
-				case "adh" : $_SESSION['tadh'] = $b[1];break;
-				case "ani" : $_SESSION['tani'] = $b[1];break;
-				case "act" : $_SESSION['tact'] = $b[1];break;
-			}
-		} 
-		fclose($ff);		
-		$_SESSION['prenom']=$donnees['prenom'];
-		$_SESSION['nom']=$donnees['nom'];
-		$_SESSION['niveau']=$donnees['niveau'];
-		setlocale(LC_TIME,'fr_FR.utf8','fra','fr_FR.ISO8859-1');
-		$_SESSION['debut']=utf8_encode(strftime("%d/%m/%g_%H:%M:%S"));
-		$M->close();
+	if ($donnees['login']) {
+		$passcrypt=$donnees['password'];
+		exec('./decryptb "'.$passcrypt.'"',$c,$ret);
+		if ($c[0]==$pass) {
+			$ff = fopen("../conf/tables.conf","r");
+			while (!feof($ff)) {
+				$a= trim(utf8_encode(fgets($ff)));
+				$b=explode("=",$a);
+				switch ($b[0]) {
+					case "adh" : $_SESSION['tadh'] = $b[1];break;
+					case "ani" : $_SESSION['tani'] = $b[1];break;
+					case "act" : $_SESSION['tact'] = $b[1];break;
+				}
+			} 
+			fclose($ff);		
+			$_SESSION['prenom']=$donnees['prenom'];
+			$_SESSION['nom']=$donnees['nom'];
+			$_SESSION['niveau']=$donnees['niveau'];
+			setlocale(LC_TIME,'fr_FR.utf8','fra','fr_FR.ISO8859-1');
+			$_SESSION['debut']=utf8_encode(strftime("%d/%m/%g_%H:%M:%S"));
+			$M->close();
+		}
 ?>	
 	<form name='demarre' method='post' action='club0.php'>
 		<input type='hidden' name='prenom' value=<?php echo $donnees['prenom'] ?> >

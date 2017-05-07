@@ -26,12 +26,14 @@
 		$sql = "SELECT * FROM $tlog ORDER BY id DESC";
 		$reponse = $M->querydb($sql);
 		echo "<table  class='tablepart' width=80%><tr><th>ID</th><th>DATE</th><th>HEURE</th><th>&nbsp;&nbsp;UTILISATEUR&nbsp;&nbsp;</th><th>REQUETE</th></tr>";
-		while ($donnees=$reponse->fetch()) {
+		$i=0;
+		while (($donnees=$reponse->fetch())&&($i<100)) {
 			$mes ="<tr>";
 			$mes .="<td>".$donnees['id']."</td><td>".$donnees['jour']."</td><td>".$donnees['heure']."</td>";
 			$mes .= "<td>".$donnees['utilisateur']."</td><td>".$donnees['requete']."  ".$donnees['sessionid']."</td>";
 			$mes .="</tr>";
 			echo $mes;
+			$i++;
 		} 
 		$M->close();
 	?>

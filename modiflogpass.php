@@ -1,7 +1,6 @@
 <?php
 	session_start();
-	$prenom=$_SESSION['prenom'];
-	$niveau=$_SESSION['niveau'];
+    require_once("session.php");
 	if (!$prenom) die();
 	include("MGENconfig.php");
 ?>

@@ -1,10 +1,6 @@
 <?php
 	session_start();
-	$tadh=$_SESSION['tadh'];
-	$tani=$_SESSION['tani'];
-	$tact=$_SESSION['tact'];
-	$prenom=$_SESSION['prenom'];
-	$niveau=$_SESSION['niveau'];
+    require_once("session.php");
 	if (!$prenom) die();
 	include("MGENconfig.php");
 ?>

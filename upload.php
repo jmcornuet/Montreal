@@ -85,9 +85,9 @@ ob_implicit_flush(true);
                     else echo "problème à l'ouverture du fichier<br>";
                     $sql = fread($fp,$taille);//on lit tout le fichier d'un seul coup
                     fclose($fp);
-                    $i=strpos($sql,"`");echo "i=".$i."<br>";
+                    $i=strpos($sql,"`");//echo "i=".$i."<br>";
                     $oldtable = substr($sql,$i+1);
-                    $i=strpos($oldtable,"`");echo "i=".$i."<br>";
+                    $i=strpos($oldtable,"`");//echo "i=".$i."<br>";
                     $oldtable = substr($oldtable,0,strpos($oldtable,"`"));
                     //echo "ancienne table : ".$oldtable."<br>";
                     $sql = str_replace($oldtable,$nomtable,$sql);

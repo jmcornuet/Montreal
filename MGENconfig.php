@@ -26,8 +26,10 @@
 				$jour=strftime("%d/%m/%Y");
 				$heure=strftime("%T");
 				$prenom=$_SESSION['prenom'];
+				$nom=$_SESSION['nom'];
+				$utilisateur=$prenom." ".$nom;
 				$sql=addslashes($sql);
-				$sqq = "INSERT INTO $this->tablog (jour,heure,utilisateur,requete) VALUES('$jour','$heure','$prenom','$sql')";
+				$sqq = "INSERT INTO $this->tablog (jour,heure,utilisateur,requete) VALUES('$jour','$heure','$utilsateur','$sql')";
 				$r=$this->bdd->query($sqq);
 			}
 	    	return $reponse;

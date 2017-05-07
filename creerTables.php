@@ -2,11 +2,7 @@
 	session_start();
 	header('Content-Type: text/html; charset=utf-8');
 	ob_implicit_flush(true);
-	$tadh=$_SESSION['tadh'];
-	$tani=$_SESSION['tani'];
-	$tact=$_SESSION['tact'];
-	$prenom=$_SESSION['prenom'];
-	$niveau=$_SESSION['niveau'];
+    require_once("session.php");
 	if (!$prenom) die();
 	include("MGENconfig.php");
 	$raz = $_POST['razadh'];
