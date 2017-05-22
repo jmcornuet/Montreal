@@ -18,6 +18,9 @@
 		include("menu.php"); 
 		$optionsdroit = "";
 		for ($i=$niveau+1;$i<6;$i++) $optionsdroit = $optionsdroit."<option value=$i>$i</option>";
+		$p=["lundi matin","lundi après-midi","mardi matin","mardi après-midi","mercredi matin","mercredi après-midi","jeudi matin","jeudi après-midi","vendredi matin","vendredi après-midi"];
+		$optionspresence = "<option value=0>Pas de service d'accueil</option>";
+		for ($i=0;$i<10;$i++) $optionspresence = $optionspresence."<option value=$i+1>$p[$i]</option>";
 	?>
 	<div class="titre1">Création d'un nouvel Utilisateur</div>
 	<div class="champ">
@@ -34,7 +37,11 @@
 				</tr>
 				<tr>
 					<td style="line-height : 200%">Niveau : </td>
-					<td><select name="niveau"><?php echo $optionsdroit ?> </select></td> 					
+					<td><select name="niveau"><?php echo $optionsdroit ?> </select></td>
+				</tr>
+				<tr>
+					<td style="line-height : 200%">Présence à l'accueil: </td>
+					<td><select name="presence"><?php echo $optionspresence ?> </select></td>
 				</tr>
 				<tr>
 					<td style="line-height : 200%">Identifiant : </td>

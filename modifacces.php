@@ -34,17 +34,22 @@
 		$optionsdroit = "";
 		for ($i=0;$i<6;$i++) $optionsdroit = $optionsdroit."<option value=$i>$i</option>";
 		$optionsdroit = putSelected2($optionsdroit,$niveau);
+		$p=["lundi matin","lundi après-midi","mardi matin","mardi après-midi","mercredi matin","mercredi après-midi","jeudi matin","jeudi après-midi","vendredi matin","vendredi après-midi"];
+		$optionspresence = "<option value=0>Pas de service d'accueil</option>";
+		for ($i=0;$i<10;$i++) $optionspresence = $optionspresence."<option value=$i+1>$p[$i]</option>";
 	?>
 	<div class="champ">
 		<fieldset class="champemprunteurs">
 			<form name="nouvelAd" action="modifniveau.php" method="post">
 				<input type="hidden" name="id" value="<?php echo $id ?>">
 				<table  class="saisie">
-					<tr><th>Utilisateur</th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Niveau de droits</th></tr>
+					<tr><th>Utilisateur</th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Niveau de droits</th><th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th><th>Présence à l'accueil</th></tr>
 					<tr>
 						<td><?php echo $prenom." ".$nom ?>   </td> 
 						<td></td>
 						<td style="text-align:center"><select name="niveau"> <?php echo $optionsdroit ?></select></td>
+						<td></td>
+						<td><select name="presence"><?php echo $optionspresence ?></select></td>
 					</tr>
 				</table>
 				<input type="submit" value="VALIDER">

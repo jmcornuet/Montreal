@@ -29,7 +29,7 @@
 				$nom=$_SESSION['nom'];
 				$utilisateur=$prenom." ".$nom;
 				$sql=addslashes($sql);
-				$sqq = "INSERT INTO $this->tablog (jour,heure,utilisateur,requete) VALUES('$jour','$heure','$utilsateur','$sql')";
+				$sqq = "INSERT INTO $this->tablog (jour,heure,utilisateur,requete) VALUES('$jour','$heure','$utilisateur','$sql')";
 				$r=$this->bdd->query($sqq);
 			}
 	    	return $reponse;
