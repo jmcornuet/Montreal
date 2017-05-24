@@ -31,12 +31,14 @@
 		$nom = $donnees['nom'];
 		$prenom = $donnees['prenom'];
 		$niveau = $donnees['niveau'];
+		$presence = $donnees['presence'];
 		$optionsdroit = "";
 		for ($i=0;$i<6;$i++) $optionsdroit = $optionsdroit."<option value=$i>$i</option>";
 		$optionsdroit = putSelected2($optionsdroit,$niveau);
 		$p=["lundi matin","lundi après-midi","mardi matin","mardi après-midi","mercredi matin","mercredi après-midi","jeudi matin","jeudi après-midi","vendredi matin","vendredi après-midi"];
 		$optionspresence = "<option value=0>Pas de service d'accueil</option>";
-		for ($i=0;$i<10;$i++) $optionspresence = $optionspresence."<option value=$i+1>$p[$i]</option>";
+		for ($i=0;$i<10;$i++) {$j=$i+1;$optionspresence = $optionspresence."<option value=$j>$p[$i]</option>";}
+		$optionspresence = putSelected2($optionspresence,$presence);
 	?>
 	<div class="champ">
 		<fieldset class="champemprunteurs">
