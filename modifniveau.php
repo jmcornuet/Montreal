@@ -19,8 +19,13 @@
 		$id = $_POST['id'];
 		$niveau = $_POST['niveau'];
 		$presence = $_POST['presence'];
+		$pres="";
+		foreach($_POST["presence"] as $value) {
+			$pres .=$value;
+		}
+		echo $pres."<br>";
 		$M = new MConf;
-		$sql = "UPDATE $M->tablaut SET niveau=$niveau,presence=$presence WHERE id=$id";
+		$sql = "UPDATE $M->tablaut SET niveau=$niveau,presence=$pres WHERE id=$id";
 		$reponse = $M->querydb($sql);
 		if ($reponse) echo "</br></br><div class='alerte'>Le niveau de l'utilisateur a bien été modifié dans la base de données </div>";
 	    else echo "</br></br><div class='alerte'>Le niveau de l'utilisateur n'a pas pu être modifié dans la base de données !!!</div>";

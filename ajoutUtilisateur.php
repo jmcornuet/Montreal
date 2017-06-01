@@ -26,11 +26,16 @@
 		$prenom = $_POST['prenom'];
 		$niveau = $_POST['niveau'];
 		$presence = $_POST['presence'];
+		$pres="";
+		foreach($_POST["presence"] as $value) {
+			$pres .=$value;
+		}
+		echo $pres."<br>";
 		$login = $_POST['login'];
 		$password = crypte($_POST['password'],40);
-
+		echo $password."<br>";
 		$M = new MConf;
-		$sql = "INSERT INTO $M->tablaut (login,password,niveau,nom,prenom,presence) VALUES ('".$login."','".$password."',".$niveau.",'".$nom."','".$prenom."',".$presence.")" ;
+		$sql = "INSERT INTO $M->tablaut (login,password,niveau,nom,prenom,presence) VALUES ('".$login."','".$password."',".$niveau.",'".$nom."','".$prenom."','".$pres."')" ;
 		$reponse = $M->querydb($sql);
 		if ($reponse) echo "</br></br><div class='alerte'>L'utilisateur ".$prenom." ".$nom."  a bien été ajouté dans la base de données </div>";
 	    else echo "</br></br><div class='alerte'>L'utilisateur ".$prenom." ".$nom."  n'a pas pu être ajouté dans la base de données !!!</div>";

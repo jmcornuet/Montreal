@@ -23,6 +23,15 @@
             $s2=substr($opt,$f,strlen($opt));
             return $s1." selected".$s2;
         }
+        function putSelected3($opt,$sel) {
+        	for ($i=0;$i<count($sel);$i++) {
+	            $f=strpos($opt,"value='".$sel[$i])+strlen("value='".$sel[$i])+1;
+	            $s1=substr($opt,0,$f);
+	            $s2=substr($opt,$f,strlen($opt));
+	            $opt=$s1." selected".$s2;
+	        }
+            return $opt;
+        }
 		$id = $_POST['id'];
 		$M = new MConf;
 		$sql = "SELECT * FROM $M->tablaut WHERE id=$id";
@@ -32,13 +41,19 @@
 		$prenom = $donnees['prenom'];
 		$niveau = $donnees['niveau'];
 		$presence = $donnees['presence'];
+		$pres = array();
+		$dj=["lum","lua","mam","maa","mem","mea","jem","jea","vem","vea"];
+		for ($i=0;$i<count($dj);$i++) {
+			if (strstr($presence,$dj[$i])) array_push($pres,$dj[$i]);
+		}
+//		print_r($pres);echo "<br>";
 		$optionsdroit = "";
 		for ($i=0;$i<6;$i++) $optionsdroit = $optionsdroit."<option value=$i>$i</option>";
 		$optionsdroit = putSelected2($optionsdroit,$niveau);
 		$p=["lundi matin","lundi après-midi","mardi matin","mardi après-midi","mercredi matin","mercredi après-midi","jeudi matin","jeudi après-midi","vendredi matin","vendredi après-midi"];
-		$optionspresence = "<option value=0>Pas de service d'accueil</option>";
-		for ($i=0;$i<10;$i++) {$j=$i+1;$optionspresence = $optionspresence."<option value=$j>$p[$i]</option>";}
-		$optionspresence = putSelected2($optionspresence,$presence);
+		$optionspresence = "<option value='0'>Pas de service d'accueil</option>";
+		for ($i=0;$i<10;$i++) {$val=$dj[$i];$optionspresence = $optionspresence."<option value='$val'>$p[$i]</option>";}
+		$optionspresence = putSelected3($optionspresence,$pres);
 	?>
 	<div class="champ">
 		<fieldset class="champemprunteurs">
@@ -51,12 +66,13 @@
 						<td></td>
 						<td style="text-align:center"><select name="niveau"> <?php echo $optionsdroit ?></select></td>
 						<td></td>
-						<td><select name="presence"><?php echo $optionspresence ?></select></td>
+						<td><select multiple name="presence[]"><?php echo $optionspresence ?></select></td>
 					</tr>
 				</table>
 				<input type="submit" value="VALIDER">
 			</form>
 		</fieldset>
 	</div>
+
 </body>
 </html>
